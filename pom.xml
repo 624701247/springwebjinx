@@ -20,7 +20,8 @@
 
     <spring.core.version>3.1.0.RELEASE</spring.core.version>
     <spring.data.mongodb.version>1.0.0.RELEASE</spring.data.mongodb.version>
-    <mongodb.driver.version>2.7.2</mongodb.driver.version>
+    <mongodb.driver.version>3.6.3</mongodb.driver.version>
+
   </properties>
 
   <dependencies>

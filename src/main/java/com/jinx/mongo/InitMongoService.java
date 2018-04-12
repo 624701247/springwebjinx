@@ -9,7 +9,16 @@ public class InitMongoService {
     private MongoTemplate mongoTemplate;
 
     public void init() {
-        System.out.println("mongoinit " + mongoTemplate);
-        mongoTemplate.dropCollection("coll1");
+        System.out.println("mongoTemplate1 " + mongoTemplate);
+
+        // 删除数据库表 collection
+//        mongoTemplate.dropCollection("players");
+
+        //
+
+        User us = new User("ktwo");
+        mongoTemplate.insert(us, "players");
+
     }
+
 }
