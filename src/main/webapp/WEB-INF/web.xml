@@ -4,4 +4,76 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>rootPath</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+
+  <!-- webRoot根路径key值配置 -->
+  <listener>
+    <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
+  </listener>
+
+  <!--???-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+
+  <!---->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- 对于非controller的请求处理-->
+  <!--加上才能访问： http://localhost:8080/xx/xx/carry.js-->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <!---->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <!---->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <!---->
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- 欢迎页面 访问 http://localhost:8080/ 响应 -->
+  <welcome-file-list>
+    <welcome-file>welcome.html</welcome-file>
+    <welcome-file>welcome.jsp</welcome-file>
+  </welcome-file-list>
+
+
+  <!--当系统出现404错误，跳转到页面nopage.html-->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/err404.html</location>
+  </error-page>
+
+
 </web-app>
