@@ -1,4 +1,4 @@
-package com.jinx.mongo;
+package com.jinx.mongo.collections;
 
 
 import org.springframework.data.annotation.Id;

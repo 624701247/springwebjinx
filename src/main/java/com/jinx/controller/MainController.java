@@ -1,5 +1,7 @@
 package com.jinx.controller;
 
+import com.jinx.mongo.DbService;
+import com.jinx.mongo.collections.H5PrjInfo;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -23,6 +25,8 @@ import static java.nio.file.Files.readAllLines;
 public class MainController {
     private static String outDir = null;
 
+//    private DbService dbs;
+
     public MainController() {
         System.out.println("staticPath :" + this.getClass().getResource("/").getPath());
         System.out.println("rootPath: " +  System.getProperty("rootPath") );
@@ -30,6 +34,15 @@ public class MainController {
         outDir = System.getProperty("rootPath");
     }
 
+    @RequestMapping(value="/kone", method = RequestMethod.GET)
+    @ResponseBody
+    public String kone() {
+        System.out.println("koneK");
+        return "ss ";
+    }
+
+
+    //
     @RequestMapping(value="/h5/{prjName}/game", method = RequestMethod.GET)
     public String blue(@PathVariable String prjName, @RequestParam(value = "token", defaultValue = "")  String token){
         System.out.println("prj name    : " + prjName);
@@ -46,6 +59,10 @@ public class MainController {
 
     //
     private String getOutH5(String prjDir) throws IOException {
+        //
+        //this.dbs.getPrjInfo(prjDir);
+        H5PrjInfo pinfo = DbService.inst().getPrjInfo(prjDir);
+
         String absDir = outDir + "h5/" + prjDir;
         String srcPath =  absDir + "/index.html";
         String destPath = absDir + "/index-out.html";
@@ -67,7 +84,7 @@ public class MainController {
         String str = "";
         for (String string : list) {
             if(string.indexOf("<title>") != -1) {
-                writer.write("<title>春天好啊</title>"); // kone todo : 后台设置标题
+                writer.write("<title>" + pinfo.getTitle() + "</title>");
             }
             else if(string.indexOf("carry-local.js") != -1) {
                 writer.write("<script src=\"carry.js\"></script>  ");

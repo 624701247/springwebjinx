@@ -8,11 +8,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/data/mongo
-       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd"
 >
     <context:property-placeholder location="/WEB-INF/mongo.properties"/>
 
-    <mongo:repositories base-package="com.jinx.mongo" />
+    <!--<mongo:repositories base-package="com.jinx.mongo" />-->
 
     <mongo:mongo host="${mongo.host.name}" port="${mongo.host.port}"/>
 

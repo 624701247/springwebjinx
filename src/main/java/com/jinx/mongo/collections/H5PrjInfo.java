@@ -1,0 +1,25 @@
+package com.jinx.mongo.collections;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class H5PrjInfo {
+    private String title;
+    private String startTime;
+    private String author;
+    private String prjName;
+    private String endTime;
+
+    public H5PrjInfo(String prjName, String title) {
+        this.prjName = prjName;
+        this.title = title;
+    }
+
+    public String getPrjName() {
+        return this.prjName;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+}
