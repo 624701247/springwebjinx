@@ -1,26 +1,19 @@
 package com.jinx.controller;
 
-import com.jinx.mongo.DbService;
+import com.jinx.mongo.PrjInfoMgr;
 import com.jinx.mongo.collections.H5PrjInfo;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
 
 @Controller
 //@RestController  //  ?????
-
-//@RequestMapping("/h5")   // http://localhost:8080/h5
 
 public class MainController {
     private static String outDir = null;
@@ -59,9 +52,7 @@ public class MainController {
 
     //
     private String getOutH5(String prjDir) throws IOException {
-        //
-        //this.dbs.getPrjInfo(prjDir);
-        H5PrjInfo pinfo = DbService.inst().getPrjInfo(prjDir);
+        H5PrjInfo pinfo = PrjInfoMgr.inst().getPrjInfo(prjDir);
 
         String absDir = outDir + "h5/" + prjDir;
         String srcPath =  absDir + "/index.html";
