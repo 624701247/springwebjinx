@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
@@ -27,6 +28,7 @@ public class MainController {
         outDir = System.getProperty("rootPath");
     }
 
+    //ktest
     @RequestMapping(value="/kone", method = RequestMethod.GET)
     @ResponseBody
     public String kone() {
@@ -51,18 +53,37 @@ public class MainController {
     }
 
     //
-    private String getOutH5(String prjDir) throws IOException {
-        H5PrjInfo pinfo = PrjInfoMgr.inst().getPrjInfo(prjDir);
+    private String getOutH5(String prjNamw) throws IOException {
+        H5PrjInfo pinfo = PrjInfoMgr.inst().getPrjInfo(prjNamw);
+        String version = pinfo.getVersion();
 
-        String absDir = outDir + "h5/" + prjDir;
+        String absDir = outDir + "h5/" + prjNamw;
         String srcPath =  absDir + "/index.html";
-        String destPath = absDir + "/index-out.html";
-        String outStr = prjDir + "/index-out";
+        String destPath = absDir + "/index-out" + version + ".html";
+        String outStr = prjNamw + "/index-out" + version;
 
         File destfile = new File(destPath);
         if(destfile.exists()){
             System.out.println(destPath + " is exists!");
-//            return outStr;   //kone todo ： 根据版本号确定是否需要重新生成静态h5
+
+            //删除旧的生成的h5文件
+            File tdir = new File(absDir);
+            if (tdir.exists() && tdir.isDirectory()) {
+                File[] files = tdir.listFiles();
+                for(int idx = 0; idx < files.length; idx++) {
+                    System.out.println(files[idx].getName());
+                    String name = files[idx].getName();
+                    if( name.indexOf("index-out") != -1) {
+                        if(name.indexOf(version) == -1 ) {
+                            System.out.println("删除旧的生成的h5文件" + name);
+                            files[idx].delete();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return outStr;
         }
 
         OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(destfile),"utf-8"); //utf-8 解决中文乱码

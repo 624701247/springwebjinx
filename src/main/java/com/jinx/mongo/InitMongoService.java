@@ -20,7 +20,7 @@ public class InitMongoService {
         instance = this;
     }
 
-    private static InitMongoService instance;
+    private static InitMongoService instance = null;
     public static InitMongoService inst(){
         return instance;
     }

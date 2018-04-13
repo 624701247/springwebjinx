@@ -37,9 +37,14 @@ public class PrjInfoMgr {
     }
 
     //
-    public void updateDb(String prjName) {
+    public boolean updateDb(String prjName) {
+        if(InitMongoService.inst() == null) {
+            System.out.println("数据库还没初始化");
+            return false;
+        }
         H5PrjInfo info = InitMongoService.inst().getH5PrjInfo(prjName);
         this.addItem(prjName, info);
         System.out.println("更新项目信息： " + prjName + "  " + info.getTitle());
+        return true;
     }
 }

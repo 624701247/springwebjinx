@@ -9,6 +9,8 @@ public class H5PrjInfo {
     private String author;
     private String prjName;
     private String endTime;
+    private String version;
+    private boolean isRuning;
 
     public H5PrjInfo(String prjName, String title) {
         this.prjName = prjName;
@@ -21,5 +23,9 @@ public class H5PrjInfo {
 
     public String getTitle() {
         return this.title;
+    }
+
+    public String getVersion() {
+        return this.version;
     }
 }
