@@ -65,24 +65,7 @@ public class MainController {
         File destfile = new File(destPath);
         if(destfile.exists()){
             System.out.println(destPath + " is exists!");
-
-            //删除旧的生成的h5文件
-            File tdir = new File(absDir);
-            if (tdir.exists() && tdir.isDirectory()) {
-                File[] files = tdir.listFiles();
-                for(int idx = 0; idx < files.length; idx++) {
-                    System.out.println(files[idx].getName());
-                    String name = files[idx].getName();
-                    if( name.indexOf("index-out") != -1) {
-                        if(name.indexOf(version) == -1 ) {
-                            System.out.println("删除旧的生成的h5文件" + name);
-                            files[idx].delete();
-                            break;
-                        }
-                    }
-                }
-            }
-
+            this.delOldH5File(absDir, version);
             return outStr;
         }
 
@@ -93,7 +76,6 @@ public class MainController {
         File file = resource.getFile();
         List<String> list = readAllLines(file.toPath());
 
-        String str = "";
         for (String string : list) {
             if(string.indexOf("<title>") != -1) {
                 writer.write("<title>" + pinfo.getTitle() + "</title>");
@@ -107,5 +89,25 @@ public class MainController {
         }
         writer.close();
         return outStr;
+    }
+
+
+    //删除旧的生成的h5文件
+    private void delOldH5File(String absDir, String version) {
+        File tdir = new File(absDir);
+        if (tdir.exists() && tdir.isDirectory()) {
+            File[] files = tdir.listFiles();
+            for(int idx = 0; idx < files.length; idx++) {
+                System.out.println(files[idx].getName());
+                String name = files[idx].getName();
+                if( name.indexOf("index-out") != -1) {
+                    if(name.indexOf(version) == -1 ) {
+                        System.out.println("删除旧的生成的h5文件" + name);
+                        files[idx].delete();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

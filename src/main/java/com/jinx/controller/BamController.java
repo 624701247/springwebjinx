@@ -17,6 +17,13 @@ public class BamController {
         System.out.println("bam init");
     }
 
+    @RequestMapping(value="/home", method = RequestMethod.GET)
+    public String home(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
+        System.out.println("bam home");
+//        return "index.html";  // kone todo : 这样不行哦
+        return "redirect:/bam/index.html";
+    }
+
 
     @RequestMapping(value="/prj-info-update", method = RequestMethod.GET)
     @ResponseBody

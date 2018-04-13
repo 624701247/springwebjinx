@@ -3,23 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <!--kone point ： 访问分发处理器 -->
-
     <!---->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/h5/" />
+        <property name="prefix" value="/bam/" />
         <property name="suffix" value=".html" />
         <property name="contentType" value="text/html"></property>
     </bean>
 
-
-    <!-- 设置访问映射路径 : 可以访问h5目录下的所有文件 -->
-    <!--<mvc:resources mapping="/h5/**" location="/h5/" />-->
-
-    <!-- 设置访问映射路径 : 只能访问h5目录下的html文件 -->
-    <mvc:resources location="/h5/" mapping="/h5/**/*.html" />
-
-
+    <mvc:resources location="/bam/" mapping="/bam/**/*.html" />
 
 </beans>

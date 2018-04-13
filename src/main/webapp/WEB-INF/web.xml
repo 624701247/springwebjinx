@@ -2,7 +2,7 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app xmlns:context="http://www.springframework.org/schema/context">
   <display-name>Archetype Created Web Application</display-name>
 
 
@@ -37,6 +37,20 @@
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+
+
+  <!---->
+  <servlet>
+    <servlet-name>bam</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>bam</servlet-name>
+    <url-pattern>/bam</url-pattern>
+  </servlet-mapping>
+
 
 
   <!-- 对于非controller的请求处理-->
@@ -74,6 +88,5 @@
     <error-code>404</error-code>
     <location>/err404.html</location>
   </error-page>
-
 
 </web-app>
