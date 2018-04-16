@@ -29,6 +29,15 @@ public class MainController {
     }
 
     //ktest
+//    @RequestMapping(value="/", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String kone() {
+//        System.out.println("koneK");
+//        return "ss ";
+//    }
+
+
+    //ktest
     @RequestMapping(value="/kone", method = RequestMethod.GET)
     @ResponseBody
     public String kone() {

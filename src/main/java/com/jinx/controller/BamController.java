@@ -20,8 +20,7 @@ public class BamController {
     @RequestMapping(value="/home", method = RequestMethod.GET)
     public String home(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
         System.out.println("bam home");
-//        return "index.html";  // kone todo : 这样不行哦
-        return "redirect:/bam/index.html";
+        return "bam/index";
     }
 
 

@@ -20,6 +20,15 @@
     <!-- 设置访问映射路径 : 只能访问h5目录下的html文件 -->
     <mvc:resources location="/h5/" mapping="/h5/**/*.html" />
 
+    <!--静态资源访问处理 这种方法就是利用容器的default servlet来处理先
+    -->
+    <mvc:default-servlet-handler />
 
+    <!-- 通过扫描将带有@Controller注解的类交由spring容器管理并维护 -->
+    <context:component-scan base-package="com.jinx.controller"/>
+
+
+    <!--这个是SpringMVC必须要配置的，因为它声明了@RequestMapping、@RequestBody、@ResponseBody等。并且，该配置默认加载很多的参数绑定方法，比如json转换解析器等。-->
+    <mvc:annotation-driven/>
 
 </beans>
