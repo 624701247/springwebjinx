@@ -19,7 +19,7 @@ public class PrjInfoMgr {
     private PrjInfoMgr() {
         this.prjInfoMap = new HashMap<String, H5PrjInfo>();
 
-        H5PrjInfo pinfo = new H5PrjInfo("ktest", "test prj");
+        H5PrjInfo pinfo = new H5PrjInfo("ktest");
         this.prjInfoMap.put("ktest",  pinfo);
     }
 
@@ -46,5 +46,12 @@ public class PrjInfoMgr {
         this.addItem(prjName, info);
         System.out.println("更新项目信息： " + prjName + "  " + info.getTitle());
         return true;
+    }
+
+    //
+    public boolean addPrj() {
+//        H5PrjInfo pinfo = new H5PrjInfo();
+//        InitMongoService.inst().insertPrj(pinfo);
+        return true; //
     }
 }

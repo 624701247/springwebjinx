@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+//@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin("http://test.com")
 
 @RequestMapping("/bam")
 public class BamController {
@@ -23,8 +25,8 @@ public class BamController {
         return "bam/index";
     }
 
-
-    @RequestMapping(value="/prj-info-update", method = RequestMethod.GET)
+    //
+    @RequestMapping(value="/prj_info_update", method = RequestMethod.GET)
     @ResponseBody
     public String infoUpdate(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
         boolean flag = false;
@@ -36,4 +38,22 @@ public class BamController {
         }
         return "{flag:" + flag + "}";
     }
+
+    //
+    @RequestMapping(value="/", method = RequestMethod.POST)
+    @ResponseBody
+    public String createPrj(@RequestParam(value = "a", defaultValue = "")  String action,
+                            @RequestParam(value = "t", defaultValue = "")  String timestamp,
+                            @RequestParam(value = "d", defaultValue = "{}")  String data) {
+        switch (action) {
+            case "prj_create":
+                break;
+
+            default:
+                break;
+        }
+        return "" + action + " " + data;
+    }
+
+
 }

@@ -12,9 +12,9 @@ public class H5PrjInfo {
     private String version;
     private boolean isRuning;
 
-    public H5PrjInfo(String prjName, String title) {
+    public H5PrjInfo(String prjName) {
         this.prjName = prjName;
-        this.title = title;
+//        this.title = title;
     }
 
     public String getPrjName() {
