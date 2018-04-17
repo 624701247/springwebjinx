@@ -7,26 +7,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 //@CrossOrigin(origins = "*", maxAge = 3600)
 //@CrossOrigin("http://test.com")
 
-@RequestMapping("/bam")
+//@RequestMapping("")
 public class BamController {
 
     public BamController() {
         System.out.println("bam init");
     }
 
-    @RequestMapping(value="/home", method = RequestMethod.GET)
+    @RequestMapping(value="/h5/bam/home", method = RequestMethod.GET)
     public String home(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
         System.out.println("bam home");
         return "bam/index";
     }
 
     //
-    @RequestMapping(value="/prj_info_update", method = RequestMethod.GET)
+//    @CrossOrigin(origins = "*", maxAge = 3600)
+    @RequestMapping(value="/bam/prj_info_update", method = RequestMethod.GET)
     @ResponseBody
     public String infoUpdate(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
         boolean flag = false;
@@ -34,13 +36,13 @@ public class BamController {
 
         }
         else { //更新指定项目
-            flag = PrjInfoMgr.inst().updateDb(prjName);
+//            flag = PrjInfoMgr.inst().updateDb(prjName);
         }
         return "{flag:" + flag + "}";
     }
 
     //
-    @RequestMapping(value="/", method = RequestMethod.POST)
+    @RequestMapping(value="/bam", method = RequestMethod.POST)
     @ResponseBody
     public String createPrj(@RequestParam(value = "a", defaultValue = "")  String action,
                             @RequestParam(value = "t", defaultValue = "")  String timestamp,

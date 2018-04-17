@@ -84,6 +84,16 @@
     </dependency>
     <!--end of Spring Core -->
 
+
+    <!---->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-asm</artifactId>-->
+      <!--<version>>${spring.core.version}</version>-->
+    <!--</dependency>-->
+
+
+
     <!-- Spring Data MongoDB -->
     <dependency>
       <groupId>org.springframework.data</groupId>
@@ -101,6 +111,7 @@
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
+
 
   </dependencies>
 

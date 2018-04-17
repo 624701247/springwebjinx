@@ -20,6 +20,8 @@
     <!-- 设置访问映射路径 : 只能访问h5目录下的html文件 -->
     <mvc:resources location="/h5/" mapping="/h5/**/*.html" />
 
+    <!--<mvc:resources location="/h5/bam/" mapping="/bam/**" />-->
+
     <!--静态资源访问处理 这种方法就是利用容器的default servlet来处理先
     -->
     <mvc:default-servlet-handler />

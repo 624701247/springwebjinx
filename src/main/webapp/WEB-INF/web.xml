@@ -11,20 +11,23 @@
     <param-value>rootPath</param-value>
   </context-param>
 
+
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/applicationContext.xml</param-value>
   </context-param>
 
-  <!-- webRoot根路径key值配置 -->
+  <!-- webRoot根路径key值配置-->
   <listener>
     <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
   </listener>
+
 
   <!--???-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+
 
 
   <!--kone todo ：跨域问题 -->
