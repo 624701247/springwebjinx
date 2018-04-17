@@ -1,6 +1,7 @@
 # springwebjinx
 ### file -- new -- maven -- maven-archetype-webapp
 ### 一个叫春的框架
+### 知识点请搜索代码中 kone point 或看下面你的介绍
 
 # 
 #### 解决跨域问题

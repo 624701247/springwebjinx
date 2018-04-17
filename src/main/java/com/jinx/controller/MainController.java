@@ -47,6 +47,14 @@ public class MainController {
     }
 
 
+
+    @RequestMapping(value="/h5/bam/home", method = RequestMethod.GET)
+    public String home(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
+        System.out.println("bam home");
+        return "bam/index";
+    }
+
+
     //
     @RequestMapping(value="/h5/{prjName}/game", method = RequestMethod.GET)
     public String blue(@PathVariable String prjName, @RequestParam(value = "token", defaultValue = "")  String token){

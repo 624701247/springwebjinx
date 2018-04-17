@@ -3,32 +3,35 @@ package com.jinx.controller;
 
 import com.jinx.mongo.PrjInfoMgr;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 //@CrossOrigin(origins = "*", maxAge = 3600)
 //@CrossOrigin("http://test.com")
 
-//@RequestMapping("")
+@RequestMapping("/bam")
 public class BamController {
 
     public BamController() {
         System.out.println("bam init");
     }
 
-    @RequestMapping(value="/h5/bam/home", method = RequestMethod.GET)
-    public String home(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
-        System.out.println("bam home");
-        return "bam/index";
-    }
+/*    kone point: 获取http 请求参数：
+1、
+@RequestParam(value = "prjName", defaultValue = "")  String prjName
+若"Content-Type"="application/x-www-form-urlencoded"，post get都可以
+若"Content-Type"="application/application/json"，只适用get
 
-    //
-//    @CrossOrigin(origins = "*", maxAge = 3600)
-    @RequestMapping(value="/bam/prj_info_update", method = RequestMethod.GET)
+2、
+@ModelAttribute("a") String action
+获取POST请求的 from data 数据
+
+end of *******************************/
+
+
+    /*
+    @RequestMapping(value="/bam", method = RequestMethod.GET)
     @ResponseBody
     public String infoUpdate(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
         boolean flag = false;
@@ -36,25 +39,35 @@ public class BamController {
 
         }
         else { //更新指定项目
-//            flag = PrjInfoMgr.inst().updateDb(prjName);
+            flag = PrjInfoMgr.inst().updateDb(prjName);
         }
         return "{flag:" + flag + "}";
     }
+    */
 
     //
-    @RequestMapping(value="/bam", method = RequestMethod.POST)
+    @RequestMapping(value="", method = RequestMethod.POST)
     @ResponseBody
-    public String createPrj(@RequestParam(value = "a", defaultValue = "")  String action,
-                            @RequestParam(value = "t", defaultValue = "")  String timestamp,
-                            @RequestParam(value = "d", defaultValue = "{}")  String data) {
+    public String createPrj(
+            @ModelAttribute("a") String action,
+            @ModelAttribute("t") String timestamp,
+            @ModelAttribute("d") String data
+    ) {
+        System.out.println("action: " + action + ";  timestamp: " + timestamp);
+        System.out.println("data: " + data);
         switch (action) {
             case "prj_create":
                 break;
 
+            case "prj_update":
+                return "{\"f\":1}";
+//                boolean flag = PrjInfoMgr.inst().updateDb(prjName);
+//                break;
+
             default:
                 break;
         }
-        return "" + action + " " + data;
+        return "{\"f\":0}";
     }
 
 
