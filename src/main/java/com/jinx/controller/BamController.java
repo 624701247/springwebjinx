@@ -2,6 +2,8 @@
 package com.jinx.controller;
 
 import com.jinx.mongo.PrjInfoMgr;
+//import org.json.JSONObject;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/bam")
 public class BamController {
+
 
     public BamController() {
         System.out.println("bam init");
@@ -55,19 +58,26 @@ end of *******************************/
     ) {
         System.out.println("action: " + action + ";  timestamp: " + timestamp);
         System.out.println("data: " + data);
+
+        JSONObject json = new JSONObject(data);
+        JSONObject resp = new JSONObject();
+
         switch (action) {
             case "prj_create":
                 break;
 
             case "prj_update":
-                return "{\"f\":1}";
-//                boolean flag = PrjInfoMgr.inst().updateDb(prjName);
-//                break;
+                String prjName = json.getString("prjName");
+                boolean flag = PrjInfoMgr.inst().updateDb( prjName );
+                resp.put("f", flag);
+                resp.put("prjName", prjName);
+                break;
 
             default:
                 break;
         }
-        return "{\"f\":0}";
+
+        return resp.toString();
     }
 
 
