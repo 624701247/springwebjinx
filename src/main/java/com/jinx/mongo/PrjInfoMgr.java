@@ -1,6 +1,7 @@
 package com.jinx.mongo;
 
 import com.jinx.mongo.collections.H5PrjInfo;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -43,6 +44,11 @@ public class PrjInfoMgr {
             return false;
         }
         H5PrjInfo info = InitMongoService.inst().getH5PrjInfo(prjName);
+        if(info == null) {
+            System.out.println("找不到项目： " + prjName );
+            return false;
+        }
+
         this.addItem(prjName, info);
         System.out.println("更新项目信息： " + prjName + "  " + info.getTitle());
         return true;
@@ -53,5 +59,14 @@ public class PrjInfoMgr {
 //        H5PrjInfo pinfo = new H5PrjInfo();
 //        InitMongoService.inst().insertPrj(pinfo);
         return true; //
+    }
+
+    public JSONObject getJsonPrjList() {
+        JSONObject resp = new JSONObject();
+        for (String key : prjInfoMap.keySet()) {
+            H5PrjInfo info = prjInfoMap.get(key);
+            resp.put(info.getPrjName(), info.getJsonBaseInfo());
+        }
+        return resp;
     }
 }

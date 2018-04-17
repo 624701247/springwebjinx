@@ -35,7 +35,8 @@ public class InitMongoService {
 
     // 遍历
     public void listPrjInfos() {
-        Query qy = new Query(Criteria.where("isRuning").is(true));
+//        Query qy = new Query(Criteria.where("isRuning").is(true));
+        Query qy = new Query(); //查找全部
         List<H5PrjInfo> list = this.mongoTemplate.find(qy, H5PrjInfo.class, coll_prjInfo);
         for(int idx = 0 ; idx < list.size() ; idx++) {
             H5PrjInfo info = list.get(idx);

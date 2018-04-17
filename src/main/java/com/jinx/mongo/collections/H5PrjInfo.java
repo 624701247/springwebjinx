@@ -1,16 +1,23 @@
 package com.jinx.mongo.collections;
 
+import org.json.JSONObject;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class H5PrjInfo {
-    private String title;
-    private String startTime;
-    private String author;
     private String prjName;
-    private String endTime;
-    private String version;
-    private boolean isRuning;
+
+    /* base info */
+    private String author = "";
+    private String desc = "";
+    private String state = "";
+
+    /**/
+    private String title = "";
+    private String startTime = "";
+    private String endTime = "";
+    private String version = "";
+
 
     public H5PrjInfo(String prjName) {
         this.prjName = prjName;
@@ -27,5 +34,14 @@ public class H5PrjInfo {
 
     public String getVersion() {
         return this.version;
+    }
+
+    /**/
+    public JSONObject getJsonBaseInfo() {
+        JSONObject resp = new JSONObject();
+        resp.put("author", this.author);
+        resp.put("desc", this.desc);
+        resp.put("state", this.state);
+        return resp;
     }
 }

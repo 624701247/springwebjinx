@@ -33,20 +33,25 @@ public class BamController {
 end of *******************************/
 
 
-    /*
+    /**/
     @RequestMapping(value="/bam", method = RequestMethod.GET)
     @ResponseBody
-    public String infoUpdate(@RequestParam(value = "prjName", defaultValue = "")  String prjName) {
-        boolean flag = false;
-        if(prjName == "") { //更新全部
+    public String infoUpdate(@RequestParam(value = "a", defaultValue = "")  String action) {
+        JSONObject resp = new JSONObject();
+        System.out.println("get; action: " + action + ";  timestamp: " );
+        switch (action) {
+            case "prj_get_list": //获取项目列表
+                resp.put("f", true);
+                resp.put("list", PrjInfoMgr.inst().getJsonPrjList());
+                break;
 
+            default:
+                break;
         }
-        else { //更新指定项目
-            flag = PrjInfoMgr.inst().updateDb(prjName);
-        }
-        return "{flag:" + flag + "}";
+
+        return resp.toString();
     }
-    */
+
 
     //
     @RequestMapping(value="", method = RequestMethod.POST)
