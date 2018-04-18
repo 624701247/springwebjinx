@@ -32,9 +32,15 @@ public class BamController {
 
 end of *******************************/
 
+/*  kone point : 解决 get、 post 传输数据中文乱码问题
+
+produces="application/json;charset=UTF-8"
+
+
+ end of *******************************/
 
     /**/
-    @RequestMapping(value="/bam", method = RequestMethod.GET)
+    @RequestMapping(value="/bam", method = RequestMethod.GET,  produces="application/json;charset=UTF-8")
     @ResponseBody
     public String infoUpdate(@RequestParam(value = "a", defaultValue = "")  String action) {
         JSONObject resp = new JSONObject();

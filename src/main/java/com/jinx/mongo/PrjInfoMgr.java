@@ -20,8 +20,8 @@ public class PrjInfoMgr {
     private PrjInfoMgr() {
         this.prjInfoMap = new HashMap<String, H5PrjInfo>();
 
-        H5PrjInfo pinfo = new H5PrjInfo("ktest");
-        this.prjInfoMap.put("ktest",  pinfo);
+//        H5PrjInfo pinfo = new H5PrjInfo("ktest");
+//        this.prjInfoMap.put("ktest",  pinfo);
     }
 
     //

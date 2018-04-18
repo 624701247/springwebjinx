@@ -3,14 +3,30 @@ package com.jinx.mongo.collections;
 import org.json.JSONObject;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.UnsupportedEncodingException;
+
+//enum PrjState {
+//    dev,
+//    running,
+//    close
+//}
+
+class PrjState {
+    public static final String dev = "1";
+    public static final String running = "2";
+    public static final String close = "3";
+}
+
 @Document
 public class H5PrjInfo {
+
+
     private String prjName;
 
     /* base info */
     private String author = "";
     private String desc = "";
-    private String state = "";
+    private String state = PrjState.dev;
 
     /**/
     private String title = "";
@@ -21,7 +37,6 @@ public class H5PrjInfo {
 
     public H5PrjInfo(String prjName) {
         this.prjName = prjName;
-//        this.title = title;
     }
 
     public String getPrjName() {
@@ -39,9 +54,11 @@ public class H5PrjInfo {
     /**/
     public JSONObject getJsonBaseInfo() {
         JSONObject resp = new JSONObject();
+
         resp.put("author", this.author);
         resp.put("desc", this.desc);
         resp.put("state", this.state);
+
         return resp;
     }
 }
